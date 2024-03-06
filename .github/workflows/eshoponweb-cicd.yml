@@ -72,20 +72,8 @@ jobs:
     - name: Azure Login
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
-        
-    - name: Get app publish profile
-      id: getpublishprofile
-      uses: azure/CLI@v1
-      with:
-        inlineScript: |
-          publishprofile=$(az webapp deployment list-publishing-profiles \
-            --name "${{ B }}" \
-            --resource-group "${{ C }}" \
-            --subscription "${{ D }}" \
-            --xml)
-          echo "publishprofile=$publishprofile" >> $GITHUB_OUTPUT
-          
+        creds: ${{ secrets.AZURE_CREDENTIALS }}       
+         
     # Deploy Azure WebApp using Bicep file
     - name: deploy
       uses: azure/arm-deploy@v1
